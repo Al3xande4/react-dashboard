@@ -5,6 +5,7 @@
   cursor: pointer;
   transition: background-color 0.25s;
   border: none;
+  color: whitesmoke;
 }
 .button:hover {
 	background-color: #14129f;
