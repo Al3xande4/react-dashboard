@@ -1,0 +1,18 @@
+.select {
+	border: none;
+	border-radius: 5px;
+	font-style: normal;
+	padding: 10px 5px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: normal;
+	font-family: 'Source Sans 3', sans-serif;
+	width: 100%;
+	color:aliceblue;
+	background: rgba(255, 255, 255, 0.03);
+}
+
+.select option {
+	background-color: rgb(79, 79, 79);
+	border-radius: 10px;
+}

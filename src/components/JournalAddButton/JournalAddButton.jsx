@@ -1,9 +1,9 @@
 import CardButton from '../CardButton/CardButton';
 import './JournalAddButton.css';
 
-function JournalAddButton() {
+function JournalAddButton({ ...props }) {
 	return (
-		<CardButton className='journal-add'>
+		<CardButton {...props} className='journal-add'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='20'

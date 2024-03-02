@@ -7,6 +7,7 @@ import JournalAddButton from './components/JournalAddButton/JournalAddButton';
 import Header from './components/Header/Header';
 import JournalForm from './components/JournalForm/JournalForm';
 import { useLocalStorage } from './hooks/use-localstorage.hook';
+import { UserContextProvider } from './contexts/user.context.jsx';
 
 function mapItems(items) {
 	if (!items.length) {
@@ -17,8 +18,19 @@ function mapItems(items) {
 
 function App() {
 	const [items, setItems] = useLocalStorage('data');
+	const [selectedItem, setSelectedItem] = useState(null);
 
 	const addItem = (item) => {
+		if (item.id) {
+			setItems(
+				mapItems(items).map((el) =>
+					el.id == item.id
+						? { ...item, date: new Date(item.date) }
+						: el
+				)
+			);
+			return;
+		}
 		setItems([
 			...mapItems(items),
 			{
@@ -29,17 +41,34 @@ function App() {
 		]);
 	};
 
+	const deleteItem = (id) => {
+		setItems([...items.filter((i) => i.id != id)]);
+	};
+
 	return (
-		<div className='app'>
-			<LeftPanel>
-				<Header />
-				<JournalAddButton />
-				<JournalList items={mapItems(items)} />
-			</LeftPanel>
-			<Body>
-				<JournalForm onSubmit={addItem} />
-			</Body>
-		</div>
+		<UserContextProvider>
+			<div className='app'>
+				<LeftPanel>
+					<Header />
+					<JournalAddButton
+						onClick={() => {
+							setSelectedItem(null);
+						}}
+					/>
+					<JournalList
+						items={mapItems(items)}
+						setItem={setSelectedItem}
+					/>
+				</LeftPanel>
+				<Body>
+					<JournalForm
+						selectedItem={selectedItem}
+						onSubmit={addItem}
+						onDelete={deleteItem}
+					/>
+				</Body>
+			</div>
+		</UserContextProvider>
 	);
 }
 

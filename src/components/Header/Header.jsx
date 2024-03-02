@@ -1,10 +1,12 @@
+import SelectUser from '../SelectUser/SelectUser';
 import './Header.css';
 
 function Header() {
 	return (
-		<div className='header'>
+		<header className='header'>
 			<img className='logo' src='/logo.svg' alt='logo img' />
-		</div>
+			<SelectUser className='select' />
+		</header>
 	);
 }
 

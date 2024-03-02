@@ -33,6 +33,9 @@ export const formReducer = (state, action) => {
 		case 'CLEAR':
 			return { ...INIT_STATE };
 		case 'SET_VALUE':
-			return { ...state, values: { ...state.values, ...action.payload } };
+			return {
+				...state,
+				values: { ...state.values, ...action.payload },
+			};
 	}
 };

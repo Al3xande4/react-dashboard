@@ -1,3 +1,17 @@
+.header {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto 30px auto;
+	align-items: center;
+	align-content: stretch;
+}
+
 .logo {
-	width: 50%;
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
+}
+
+.select {
+	grid-column: 1 / -1;
+	grid-row: 3 / 4;
 }
